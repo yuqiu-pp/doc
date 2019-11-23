@@ -1,0 +1,71 @@
+
+1、安装zsh
+sudo apt-get -y install zsh
+
+2、安装Oh My Zsh
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+需要先安装git命令 sudo apt-get install git
+
+
+centos可能报错，执行 yum update -y nss curl libcurl
+fatal: unable to access 'https://github.com/robbyrussell/oh-my-zsh.git/': Peer reports incompatible or unsupported protocol version.
+
+
+3.切换zsh
+chsh -s /bin/zsh
+echo $SHELL 查看当前shell是什么
+
+
+4、配置Oh My Zsh
+vim ~/.zshrc
+主题：  ZSH_THEME="agnoster"   需要字体
+
+
+精简[user@hostname|~] => [~]
+在~/.zshrc中添加
+export DEFAULT_USER="username"
+
+
+6、安装powerline字体
+Windows系统
+https://github.com/powerline/fonts.git下载字体，放入C:/Windows/Fonts
+再powershell的配置文件中就可以设置该字体了  "fontFace": "DejaVu Sans Mono for Powerline"。
+
+wsl也可以通过左上角的图标，属性进行设置
+
+
+下面是纯Linux系统可能有用
+Linux系统字体目录/usr/share/fonts
+
+git clone https://github.com/powerline/fonts.git
+cd fonts
+./install.sh
+
+下载特殊字体
+wget -O ~/.local/share/fonts/PowerlineSymbols.otf https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+wget -O /etc/fonts/conf.d/10-powerline-symbols.conf https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+设置可执行权限 chmod
+
+
+更新字体移动路径的字体缓存
+fc-cache -vf ~/.local/share/fonts/    （可能需要安装fc-cache   yum -y install fontconfig）
+
+
+
+5、安装powerline
+git clone https://github.com/powerline/powerline.git  /usr/local/powerline
+把命令添加到环境变量
+export PATH=/usr/local/powerline/scripts:$PATH
+
+
+
+
+7、zsh使用powerline风格
+.zshrc末尾引用powerline.zsh
+
+powerline.zsh的路径
+. /usr/local/powerline/powerline/bindings/zsh/powerline.zsh
+
+
+
+https://www.xiebruce.top/590.html
